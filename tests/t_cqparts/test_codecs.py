@@ -241,7 +241,7 @@ class TestStep(CodecFileTest):
             # cylinder {5 < x < 15}, box {-10 < x < 0}
             # combined they should be {-10 < x < 15}
             self.assertAlmostEqual(thing.bounding_box.xmin, -10)
-            self.assertAlmostEqual(thing.bounding_box.xmax, 15)
+            self.assertAlmostEqual(thing.bounding_box.xmax, 15, places=6)
 
     def test_multipart_assembly(self):
         # When imported as an Assembly, each individual mesh
@@ -350,7 +350,7 @@ class TestGltf(CodecFolderTest):
             return int(buffer.idx_size / 3)  # 3 vertex indices per polygon
 
         self.assertGreater(
-            get_polycount(tolerance=0.01),
+            get_polycount(tolerance=0.001),
             get_polycount(tolerance=0.2)
         )
 

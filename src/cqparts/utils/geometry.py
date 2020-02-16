@@ -3,7 +3,7 @@ import random
 
 # FIXME: remove freecad dependency from this module...
 #        right now I'm just trying to get it working.
-import FreeCAD
+# import FreeCAD
 
 
 def merge_boundboxes(*bb_list):
@@ -141,9 +141,9 @@ class CoordSystem(cadquery.Plane):
             i & = cos(\beta) cos(\gamma)
         """
         # Create reference points at origin
-        offset = FreeCAD.Vector(0, 0, 0)
-        x_vertex = FreeCAD.Vector(1, 0, 0)  # vertex along +X-axis
-        z_vertex = FreeCAD.Vector(0, 0, 1)  # vertex along +Z-axis
+        offset = cadquery.Vector(0, 0, 0)
+        x_vertex = cadquery.Vector(1, 0, 0)  # vertex along +X-axis
+        z_vertex = cadquery.Vector(0, 0, 1)  # vertex along +Z-axis
 
         # Transform reference points
         offset = matrix.multiply(offset)
@@ -273,7 +273,7 @@ class CoordSystem(cadquery.Plane):
             # CoordSystem + cadquery.Vector
             transform = self.local_to_world_transform
             return type(other)(
-                transform.multiply(other.wrapped)
+                transform.multiply(other)
             )
 
         elif isinstance(other, cadquery.CQ):

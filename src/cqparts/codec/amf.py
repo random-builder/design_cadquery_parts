@@ -19,7 +19,7 @@ class AMFExporter(Exporter):
 
     .. note::
 
-        Object is passed to :meth:`cadquery.freecad_impl.exporters.exportShape`
+        Object is passed to :meth:`cadquery.occ_impl.exporters.exportShape`
         for exporting.
     """
 
@@ -31,7 +31,7 @@ class AMFExporter(Exporter):
 
         # call cadquery exporter
         with open(filename, 'wb') as fh:
-            cadquery.freecad_impl.exporters.exportShape(
+            cadquery.occ_impl.exporters.exportShape(
                 shape=shape,
                 exportType='AMF',
                 fileLike=fh,

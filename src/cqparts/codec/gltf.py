@@ -461,7 +461,8 @@ class GLTFExporter(Exporter):
             m = coord_sys.local_to_world_transform  # FreeCAD.Base.Matrix
             node_update.update({
                 # glTF matrix is column major; needs to be tranposed
-                'matrix': m.transposed().A,
+                # 'matrix': m.transposed().A,
+                'matrix': m.transposed_list()
             })
         else:
             raise NotImplementedError("only matrix export is supported (for now)")

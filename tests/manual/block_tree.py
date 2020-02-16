@@ -22,10 +22,10 @@ import cadquery
 from Helpers import show
 
 import logging
-try:
-    cadquery.freecad_impl.console_logging.enable(logging.INFO)
-except AttributeError:
-    pass  # outdated cadquery, no worries
+# try:
+#     cadquery.freecad_impl.console_logging.enable(logging.INFO)
+# except AttributeError:
+#     pass  # outdated cadquery, no worries
 
 log = logging.getLogger()
 #log.info("----------------- Block Tree ----------------")

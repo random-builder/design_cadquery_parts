@@ -49,7 +49,7 @@ class suppress_stdout_stderr(object):
         >>> with suppress_stdout_stderr():
         ...     print("can't see me")
 
-    a copy of: cadquery.freecad_impl.suppress_stdout_stderr
+    a copy of: cadquery.occ_impl.suppress_stdout_stderr
     """
     def __init__(self):
         # Open null files

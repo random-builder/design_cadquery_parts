@@ -15,7 +15,7 @@ from Helpers import show
 
 from cqparts.solidtypes.threads.base import Thread, profile_to_cross_section, helical_path
 
-cadquery.freecad_impl.console_logging.enable()
+# cadquery.freecad_impl.console_logging.enable()
 import logging
 log = logging.getLogger(__name__)
 

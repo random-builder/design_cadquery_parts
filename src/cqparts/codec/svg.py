@@ -19,7 +19,7 @@ class SVGExporter(Exporter):
 
     .. note::
 
-        Object is passed to :meth:`cadquery.freecad_impl.exporters.exportShape`
+        Object is passed to :meth:`cadquery.occ_impl.exporters.exportShape`
         for exporting.
 
     """
@@ -32,7 +32,7 @@ class SVGExporter(Exporter):
 
         # call cadquery exporter
         with open(filename, 'w') as fh:
-            cadquery.freecad_impl.exporters.exportShape(
+            cadquery.occ_impl.exporters.exportShape(
                 shape=shape,
                 exportType='SVG',
                 fileLike=fh,

@@ -23,7 +23,7 @@ from cqparts_fasteners.fasteners.nutbolt import NutAndBoltFastener
 
 
 # enable logging
-cadquery.freecad_impl.console_logging.enable(logging.INFO)
+# cadquery.freecad_impl.console_logging.enable(logging.INFO)
 log = logging.getLogger(__name__)
 
 alpha = 0.5

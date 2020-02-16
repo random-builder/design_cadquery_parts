@@ -3,8 +3,9 @@ from math import ceil, sin, cos, pi
 import os
 
 import cadquery
-import FreeCAD
-import Part as FreeCADPart
+from cadquery import Wire, Shape
+# import FreeCAD
+# import Part as FreeCADPart
 
 import cqparts
 from cqparts.params import *
@@ -206,7 +207,7 @@ def profile_to_cross_section(profile, lefthand=False, start_count=1, min_vertice
 
 def helical_path(pitch, length, radius, angle=0, lefthand=False):
     # FIXME: update to master branch of cadquery
-    wire = cadquery.Wire(FreeCADPart.makeHelix(pitch, length, radius, angle, lefthand))
+    wire = Wire.makeHelix(pitch, length, radius, angle, lefthand) #cadquery.Wire(FreeCADPart.makeHelix(pitch, length, radius, angle, lefthand))
     #wire = cadquery.Wire.makeHelix(pitch, length, radius, angle=angle, lefthand=lefthand)
     shape = cadquery.Wire.combine([wire])
     path = cadquery.Workplane("XY").newObject([shape])
@@ -347,7 +348,7 @@ class Thread(cqparts.Part):
             log.warning("thread shape not valid")
             new_thread = thread_shape.copy()
             new_thread.sewShape()
-            thread.objects[0].wrapped = FreeCADPart.Solid(new_thread)
+            thread.objects[0].wrapped = Shape.cast(new_thread) #FreeCADPart.Solid(new_thread)
             if not thread.objects[0].wrapped.isValid():
                 log.error("sewn thread STILL not valid")
                 raise SolidValidityError(

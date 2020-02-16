@@ -12,7 +12,7 @@ import cadquery
 import cqparts
 from Helpers import show
 
-cadquery.freecad_impl.console_logging.enable()
+# cadquery.freecad_impl.console_logging.enable()
 import logging
 log = logging.getLogger(__name__)
 

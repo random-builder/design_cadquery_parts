@@ -1,5 +1,5 @@
 import cadquery
-from cadquery import BoxSelector
+from cadquery.selectors import BoxSelector
 from math import pi, cos, sqrt
 
 from cqparts.params import *

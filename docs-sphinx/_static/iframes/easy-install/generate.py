@@ -3,7 +3,7 @@
 
 import cadquery
 import logging
-cadquery.freecad_impl.console_logging.enable(logging.INFO)
+# cadquery.freecad_impl.console_logging.enable(logging.INFO)
 
 
 # ------------------- Wood Screw -------------------
