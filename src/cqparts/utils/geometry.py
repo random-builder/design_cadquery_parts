@@ -1,10 +1,6 @@
 import cadquery
 import random
 
-# FIXME: remove freecad dependency from this module...
-#        right now I'm just trying to get it working.
-# import FreeCAD
-
 
 def merge_boundboxes(*bb_list):
     """
@@ -23,20 +19,12 @@ def merge_boundboxes(*bb_list):
     if len(bb_list) <= 1:
         return bb_list[0]  # if only 1, nothing to merge; simply return it
 
-    # Find the smallest bounding box to enclose each of those given
-    min_params = list(min(*vals) for vals in zip(  # minimum for each axis
-        *((bb.xmin, bb.ymin, bb.zmin) for bb in bb_list)
-    ))
-    max_params = list(max(*vals) for vals in zip(  # maximum for each axis
-        *((bb.xmax, bb.ymax, bb.zmax) for bb in bb_list)
-    ))
+    # Add all the bounding boxes together to make a composite one enclosing everything
+    newBBox = bb_list[0]
+    for bbox in bb_list:
+        newBBox = newBBox.add(bbox)
 
-    #__import__('ipdb').set_trace()
-
-    # Create new object with combined parameters
-    WrappedType = type(bb_list[0].wrapped)  # assuming they're all the same
-    wrapped_bb = WrappedType(*(min_params + max_params))
-    return cadquery.BoundBox(wrapped_bb)
+    return newBBox
 
 
 class CoordSystem(cadquery.Plane):
