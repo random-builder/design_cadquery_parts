@@ -62,7 +62,6 @@ class CoordSystemTests(CQPartsTest):
         self.assertEqual(cs.zDir, Vector(1,0,0))
 
     def test_from_matrix(self):
-        # from FreeCAD import Matrix
         from cadquery import Matrix
 
         # identity
@@ -73,10 +72,10 @@ class CoordSystemTests(CQPartsTest):
 
         # random #1
         m = Matrix(
-            -0.146655,-0.271161,-0.951296,0.0376659,
-            -0.676234,0.729359,-0.103649,0.615421,
-            0.721942,0.628098,-0.290333,-0.451955,
-            0,0,0,1
+            [[-0.146655, -0.271161, -0.951296, 0.0376659],
+            [-0.676234, 0.729359, -0.103649, 0.615421],
+            [0.721942, 0.628098, -0.290333, -0.451955],
+            [0, 0, 0, 1]]
         )
         cs = CoordSystem.from_transform(m)
         self.assertEqual(cs, CoordSystem(

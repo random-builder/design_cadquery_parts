@@ -190,7 +190,7 @@ class CoordSystem(cadquery.Plane):
                 random.uniform(min, max),
                 random.uniform(min, max),
             )
-
+        import OCP
         while True:
             try:
                 return cls(
@@ -198,7 +198,7 @@ class CoordSystem(cadquery.Plane):
                     xDir=rand_vect(-1, 1),
                     normal=rand_vect(-1, 1),
                 )
-            except RuntimeError:  # Base.FreeCADError inherits from RuntimeError
+            except OCP.Standard.Standard_ConstructionError:
                 # Raised if xDir & normal vectors are parallel.
                 # (the chance is very low, but it could happen)
                 continue
