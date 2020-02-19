@@ -1,4 +1,5 @@
 import mock
+import unittest
 
 from base import CQPartsTest
 from base import testlabel
@@ -14,7 +15,7 @@ class CoordSystemTests(CQPartsTest):
 
     @staticmethod
     def mat2list(m, digits=7):
-        """Converts FreeCAD.Base.Matrix to a list"""
+        """Converts cadquery.Matrix to a list"""
         return [
             round(v, digits)
             for v in [
@@ -28,7 +29,7 @@ class CoordSystemTests(CQPartsTest):
     def assertMatrixAlmostEquals(self, first, second, places=6):
         """
         :param first: matrix
-        :type first: :class:`FreeCAD.Base.Matrix`
+        :type first: :class:`cadquery.Matrix`
         :param second: list of 16 numbers (of a 4x4 matrix)
         :type second: :class:`list`
         """
@@ -61,6 +62,8 @@ class CoordSystemTests(CQPartsTest):
         self.assertEqual(cs.yDir, Vector(0,0,1))
         self.assertEqual(cs.zDir, Vector(1,0,0))
 
+    # TODO: re-introduce this test when CQ issue #283 is resolved
+    @unittest.skip("OCCT 7.4.0 matrix transformation throws a non-orthogonal error")
     def test_from_matrix(self):
         from cadquery import Matrix
 

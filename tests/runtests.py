@@ -178,11 +178,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # enable logging
-    if args.logginglevel:
-        import cadquery
-        # cadquery.freecad_impl.console_logging.enable(
-        #     level=args.logginglevel,
-        # )
+    # if args.logginglevel:
+    #     import cadquery
+    #     cadquery.freecad_impl.console_logging.enable(
+    #         level=args.logginglevel,
+    #     )
 
     # ---- Discover and run tests
     # Load tests

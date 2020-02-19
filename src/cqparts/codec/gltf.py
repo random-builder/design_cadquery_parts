@@ -458,10 +458,9 @@ class GLTFExporter(Exporter):
         """
         node_update = {}
         if matrix:
-            m = coord_sys.local_to_world_transform  # FreeCAD.Base.Matrix
+            m = coord_sys.local_to_world_transform 
             node_update.update({
                 # glTF matrix is column major; needs to be tranposed
-                # 'matrix': m.transposed().A,
                 'matrix': m.transposed_list()
             })
         else:
@@ -494,7 +493,7 @@ class GLTFExporter(Exporter):
         Returned mesh format::
 
             <return value> = (
-                [FreeCAD.Base.Vector(x, y, z), ... ],  # list of vertices
+                [Vector(x, y, z), ... ],  # list of vertices
                 [(i, j, k), ... ],  # indexes of vertices making a polygon
             )
         """

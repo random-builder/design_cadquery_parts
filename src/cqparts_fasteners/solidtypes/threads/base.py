@@ -4,8 +4,6 @@ import os
 
 import cadquery
 from cadquery import Wire, Shape
-# import FreeCAD
-# import Part as FreeCADPart
 
 import cqparts
 from cqparts.params import *
@@ -127,7 +125,7 @@ def profile_to_cross_section(profile, lefthand=False, start_count=1, min_vertice
     def get_xz(vertex):
         if isinstance(vertex, cadquery.Vector):
             vertex = vertex.wrapped  # TODO: remove this, it's messy
-        # where isinstance(vertex, FreeCAD.Base.Vector)
+
         return (vertex.x, vertex.z)
 
     def cart2polar(x, z, z_offset=0):
@@ -142,7 +140,6 @@ def profile_to_cross_section(profile, lefthand=False, start_count=1, min_vertice
         return (radius, angle)
 
     def transform(vertex, z_offset=0):
-        # where isinstance(vertex, FreeCAD.Base.Vector)
         """
         Transform profile vertex on the XZ plane to it's equivalent on
         the cross-section's XY plane
@@ -155,7 +152,7 @@ def profile_to_cross_section(profile, lefthand=False, start_count=1, min_vertice
         """
         Trace along edge and create a spline from the transformed verteces.
         """
-        curve = edge.wrapped.Curve  # FreeCADPart.Geom* (depending on type)
+        curve = edge.wrapped.Curve
         if edge.geomType() == 'CIRCLE':
             iter_dist = edge.wrapped.ParameterRange[1] / vert_count
         else:
@@ -206,9 +203,7 @@ def profile_to_cross_section(profile, lefthand=False, start_count=1, min_vertice
 
 
 def helical_path(pitch, length, radius, angle=0, lefthand=False):
-    # FIXME: update to master branch of cadquery
-    wire = Wire.makeHelix(pitch, length, radius, angle, lefthand) #cadquery.Wire(FreeCADPart.makeHelix(pitch, length, radius, angle, lefthand))
-    #wire = cadquery.Wire.makeHelix(pitch, length, radius, angle=angle, lefthand=lefthand)
+    wire = Wire.makeHelix(pitch, length, radius, angle, lefthand)
     shape = cadquery.Wire.combine([wire])
     path = cadquery.Workplane("XY").newObject([shape])
     return path
@@ -348,7 +343,7 @@ class Thread(cqparts.Part):
             log.warning("thread shape not valid")
             new_thread = thread_shape.copy()
             new_thread.sewShape()
-            thread.objects[0].wrapped = Shape.cast(new_thread) #FreeCADPart.Solid(new_thread)
+            thread.objects[0].wrapped = Shape.cast(new_thread)
             if not thread.objects[0].wrapped.isValid():
                 log.error("sewn thread STILL not valid")
                 raise SolidValidityError(

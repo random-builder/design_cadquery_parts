@@ -33,7 +33,6 @@ class STEPExporter(Exporter):
         shape = workplane.val()
 
         # call cadquery exporter
-        # with cadquery.freecad_impl.suppress_stdout_stderr():
         with open(filename, 'w') as fh:
             cadquery.occ_impl.exporters.exportShape(
                 shape=shape,
