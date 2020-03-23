@@ -1,0 +1,33 @@
+package:
+  name: cq-parts-bundle
+  version:  {{ environ.get('PACKAGE_VERSION') }}
+
+source:
+  path: ../../src
+
+build:
+
+  noarch: python
+
+  string: {{ 'py'+environ.get('PYTHON_VERSION')}}
+  
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+  
+requirements:
+
+  build:
+    - python {{ environ.get('PYTHON_VERSION') }}
+    - setuptools
+
+  run:
+    - python {{ environ.get('PYTHON_VERSION') }}
+    - cadquery=2.*
+    - six
+    - numpy
+    - jinja2
+    - tinydb
+    - requests
+
+about:
+
+summary: CQ Parts Bundle
